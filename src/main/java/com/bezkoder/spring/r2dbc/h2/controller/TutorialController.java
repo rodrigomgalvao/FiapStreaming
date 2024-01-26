@@ -45,7 +45,7 @@ public class TutorialController {
   @PostMapping("/tutorials")
   @ResponseStatus(HttpStatus.CREATED)
   public Mono<Tutorial> createTutorial(@RequestBody Tutorial tutorial) {
-    return tutorialService.save(new Tutorial(tutorial.getTitle(), tutorial.getDescription(), false));
+    return tutorialService.save(tutorial);
   }
 
   @PutMapping("/tutorials/{id}")
