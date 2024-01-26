@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.bezkoder.spring.r2dbc.h2.model.Usuario;
 import com.bezkoder.spring.r2dbc.h2.model.VideoCategoria;
+import com.bezkoder.spring.r2dbc.h2.service.UsuarioService;
 import com.bezkoder.spring.r2dbc.h2.service.VideoCategoriaService;
 
 import reactor.core.publisher.Mono;
@@ -24,44 +26,44 @@ import reactor.core.publisher.Mono;
 
 @RestController
 @RequestMapping("/api")
-public class VideoCategoriaController {
+public class UsuarioController {
   @Autowired
-  VideoCategoriaService videoCategoriaService;
+  UsuarioService usuarioService;
   
 
 
   
-  @GetMapping("/VideoCategorias/{id}")
+  @GetMapping("/usuario/{id}")
   @ResponseStatus(HttpStatus.OK)
-  public Mono<VideoCategoria> getVideoCategoriaById(@PathVariable("id") int id) {
-	   return videoCategoriaService.findById(id);
+  public Mono<Usuario> getUsuarioById(@PathVariable("id") int id) {
+	   return usuarioService.findById(id);
 
   }
 
-  @PostMapping("/VideoCategorias")
+  @PostMapping("/usuario")
   @ResponseStatus(HttpStatus.CREATED)
-  public Mono<VideoCategoria> createVideoCategoria(@RequestBody VideoCategoria videoCategoria) {
-    return videoCategoriaService.save(videoCategoria);
+  public Mono<Usuario> createUsuario(@RequestBody Usuario usuario) {
+    return usuarioService.save(usuario);
   }
   
 
 
-  @PutMapping("/VideoCategorias/{id}")
+  @PutMapping("/usuario/{id}")
   @ResponseStatus(HttpStatus.OK)
-  public Mono<VideoCategoria> updateVideoCategoria(@PathVariable("id") int id, @RequestBody VideoCategoria videoCategoria) {
-	  return videoCategoriaService.update(id, videoCategoria);
+  public Mono<Usuario> updateUsuario(@PathVariable("id") int id, @RequestBody Usuario usuario) {
+	  return usuarioService.update(id, usuario);
   }
 
-  @DeleteMapping("/VideoCategorias/{id}")
+  @DeleteMapping("/usuario/{id}")
   @ResponseStatus(HttpStatus.NO_CONTENT)
   public Mono<Void> deleteVideoCategoria(@PathVariable("id") int id) {
-    return videoCategoriaService.deleteById(id);
+    return usuarioService.deleteById(id);
   }
 
-  @DeleteMapping("/VideoCategorias")
+  @DeleteMapping("/usuario")
   @ResponseStatus(HttpStatus.NO_CONTENT)
-  public Mono<Void> deleteAllVideoCategorias() {
-    return videoCategoriaService.deleteAll();
+  public Mono<Void> deleteAllUsuarios() {
+    return usuarioService.deleteAll();
   }
 
 
