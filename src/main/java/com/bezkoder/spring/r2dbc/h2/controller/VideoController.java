@@ -19,44 +19,41 @@ import reactor.core.publisher.Mono;
 @RestController
 @RequestMapping("/api")
 public class VideoController {
-  @Autowired
-  VideoService videoService;
-  
+    @Autowired
+    VideoService videoService;
 
 
-  
-  @GetMapping("/video/{id}")
-  @ResponseStatus(HttpStatus.OK)
-  public Mono<Video> getVideoById(@PathVariable("id") int id) {
-	   return videoService.findById(id);
+    @GetMapping("/video/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Mono<Video> getVideoById(@PathVariable("id") int id) {
+        return videoService.findById(id);
 
-  }
+    }
 
-  @PostMapping("/video")
-  @ResponseStatus(HttpStatus.CREATED)
-  public Mono<Video> createVideo(@RequestBody Video Video) {
-    return videoService.save(Video);
-  }
-  
+    @PostMapping("/video")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Mono<Video> createVideo(@RequestBody Video Video) {
+        return videoService.save(Video);
+    }
 
 
-  @PutMapping("/video/{id}")
-  @ResponseStatus(HttpStatus.OK)
-  public Mono<Video> updateVideo(@PathVariable("id") int id, @RequestBody Video Video) {
-	  return videoService.update(id, Video);
-  }
+    @PutMapping("/video/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Mono<Video> updateVideo(@PathVariable("id") int id, @RequestBody Video Video) {
+        return videoService.update(id, Video);
+    }
 
-  @DeleteMapping("/video/{id}")
-  @ResponseStatus(HttpStatus.NO_CONTENT)
-  public Mono<Void> deleteVideo(@PathVariable("id") int id) {
-    return videoService.deleteById(id);
-  }
+    @DeleteMapping("/video/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public Mono<Void> deleteVideo(@PathVariable("id") int id) {
+        return videoService.deleteById(id);
+    }
 
-  @DeleteMapping("/video")
-  @ResponseStatus(HttpStatus.NO_CONTENT)
-  public Mono<Void> deleteAllVideos() {
-    return videoService.deleteAll();
-  }
+    @DeleteMapping("/video")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public Mono<Void> deleteAllVideos() {
+        return videoService.deleteAll();
+    }
 
 
 }

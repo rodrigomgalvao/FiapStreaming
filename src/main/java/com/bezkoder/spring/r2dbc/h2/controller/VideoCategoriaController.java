@@ -25,44 +25,41 @@ import reactor.core.publisher.Mono;
 @RestController
 @RequestMapping("/api")
 public class VideoCategoriaController {
-  @Autowired
-  VideoCategoriaService videoCategoriaService;
-  
+    @Autowired
+    VideoCategoriaService videoCategoriaService;
 
 
-  
-  @GetMapping("/videoCategorias/{id}")
-  @ResponseStatus(HttpStatus.OK)
-  public Mono<VideoCategoria> getVideoCategoriaById(@PathVariable("id") int id) {
-	   return videoCategoriaService.findById(id);
+    @GetMapping("/videoCategorias/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Mono<VideoCategoria> getVideoCategoriaById(@PathVariable("id") int id) {
+        return videoCategoriaService.findById(id);
 
-  }
+    }
 
-  @PostMapping("/videoCategorias")
-  @ResponseStatus(HttpStatus.CREATED)
-  public Mono<VideoCategoria> createVideoCategoria(@RequestBody VideoCategoria videoCategoria) {
-    return videoCategoriaService.save(videoCategoria);
-  }
-  
+    @PostMapping("/videoCategorias")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Mono<VideoCategoria> createVideoCategoria(@RequestBody VideoCategoria videoCategoria) {
+        return videoCategoriaService.save(videoCategoria);
+    }
 
 
-  @PutMapping("/videoCategorias/{id}")
-  @ResponseStatus(HttpStatus.OK)
-  public Mono<VideoCategoria> updateVideoCategoria(@PathVariable("id") int id, @RequestBody VideoCategoria videoCategoria) {
-	  return videoCategoriaService.update(id, videoCategoria);
-  }
+    @PutMapping("/videoCategorias/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Mono<VideoCategoria> updateVideoCategoria(@PathVariable("id") int id, @RequestBody VideoCategoria videoCategoria) {
+        return videoCategoriaService.update(id, videoCategoria);
+    }
 
-  @DeleteMapping("/videoCategorias/{id}")
-  @ResponseStatus(HttpStatus.NO_CONTENT)
-  public Mono<Void> deleteVideoCategoria(@PathVariable("id") int id) {
-    return videoCategoriaService.deleteById(id);
-  }
+    @DeleteMapping("/videoCategorias/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public Mono<Void> deleteVideoCategoria(@PathVariable("id") int id) {
+        return videoCategoriaService.deleteById(id);
+    }
 
-  @DeleteMapping("/videoCategorias")
-  @ResponseStatus(HttpStatus.NO_CONTENT)
-  public Mono<Void> deleteAllVideoCategorias() {
-    return videoCategoriaService.deleteAll();
-  }
+    @DeleteMapping("/videoCategorias")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public Mono<Void> deleteAllVideoCategorias() {
+        return videoCategoriaService.deleteAll();
+    }
 
 
 }

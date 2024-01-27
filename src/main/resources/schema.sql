@@ -33,3 +33,14 @@ CREATE TABLE IF NOT EXISTS visualizacao_video
     FOREIGN KEY (id_usuario) REFERENCES usuario (id),
     FOREIGN KEY (id_video) REFERENCES video (id)
 );
+
+CREATE TABLE IF NOT EXISTS favoritacao_video
+(
+    id              INT NOT NULL AUTO_INCREMENT,
+    data_publicacao DATE,
+    id_usuario      INT,
+    id_video        INT,
+    PRIMARY KEY (id),
+    FOREIGN KEY (id_usuario) REFERENCES usuario (id),
+    FOREIGN KEY (id_video) REFERENCES video (id)
+);
