@@ -13,8 +13,11 @@ import reactor.core.publisher.Flux;
 public interface VideoRepository extends R2dbcRepository<Video, Integer>{
 
 
-    @Query("SELECT * FROM video ORDER BY data_publicacao DESC")
-    Flux<Video> findAllPagedOrderByDataPublicacaoDesc(Pageable pageable);
+//    @Query("SELECT * FROM video ORDER BY data_publicacao DESC")
+//    Flux<Video> findAllPagedOrderByDataPublicacaoDesc(Pageable pageable);
+	
+	
+	 Flux<Video> findAllByOrderByDataPublicacaoDesc(Pageable pageable);
     
 
 

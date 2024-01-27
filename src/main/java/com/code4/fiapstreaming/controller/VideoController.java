@@ -1,8 +1,10 @@
 package com.code4.fiapstreaming.controller;
 
 import java.time.LocalDate;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -38,23 +40,7 @@ public class VideoController {
 
 	}
 
-//    @GetMapping("/videosFilter")
-//    @ResponseStatus(HttpStatus.OK)
-//    public Flux<Object> getVideos(@RequestParam(required = false) String titulo,
-//                                  @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dataPublicacao,
-//                                  @RequestParam(defaultValue = "0") int page,
-//                                  @RequestParam(defaultValue = "3") int size) {
-//        if (titulo == null && dataPublicacao == null) {
-//            return Flux.just("Por favor, forneça critérios de busca (titulo e/ou dataPublicacao).");
-//        }
-//        
-//        Pageable pageable = PageRequest.of(page, size);
-//        Flux<Video> videos = videoService.findByTituloAndDataPublicacaoBeforeOrderByDataPublicacaoDesc(titulo, dataPublicacao, pageable);
-//        
-//        return videos
-//                .map(video -> (Object) video)
-//                .defaultIfEmpty("Nenhum vídeo encontrado com os critérios de busca.");
-//    }
+
 
 	@GetMapping("/videosFilter")
 	@ResponseStatus(HttpStatus.OK)
@@ -82,15 +68,16 @@ public class VideoController {
 	@GetMapping("/videos")
 	@ResponseStatus(HttpStatus.OK)
 	public Flux<Video> getVideos(@RequestParam(defaultValue = "0") int page,
-			@RequestParam(defaultValue = "3") int size) {
+	                             @RequestParam(defaultValue = "3") int size) {
 
-		Pageable pageable = PageRequest.of(page, size);
+	    // Configura a ordenação por data de publicação, decrescente
+	    Pageable pageable = PageRequest.of(page, size, Sort.by("dataPublicacao").descending());
 
-		pageable = PageRequest.of(page, size, Sort.by("dataPublicacao").descending());
-
-		return videoService.findAll(pageable);
+	    // Chama o serviço para recuperar os vídeos
+	    return videoService.findAll(pageable);
 	}
 
+	
 	@PostMapping("/video")
 	@ResponseStatus(HttpStatus.CREATED)
 	public Mono<Video> createVideo(@RequestBody Video Video) {

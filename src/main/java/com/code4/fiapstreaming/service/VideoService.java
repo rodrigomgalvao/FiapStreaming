@@ -31,7 +31,7 @@ public class VideoService {
 	}
 
   public Flux<Video> findAll(Pageable pageable) {
-      return videoRepository.findAllPagedOrderByDataPublicacaoDesc(pageable);
+      return videoRepository.findAllByOrderByDataPublicacaoDesc(pageable);
   }
   public Mono<Video> findById(int id){
     return videoRepository.findById(id);
