@@ -1,8 +1,12 @@
 package com.code4.fiapstreaming.service;
 
+import java.time.LocalDate;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.code4.fiapstreaming.model.Video;
@@ -17,12 +21,13 @@ public class VideoService {
   @Autowired
   VideoRepository videoRepository;
 
-  public Flux<Video> findAll() {
-    return videoRepository.findAll();
+  public Flux<Video> findByTituloAndDataPublicacaoBeforeOrderByDataPublicacaoDesc(String titulo, LocalDate dataPublicacao, Pageable pageable) {
+      return videoRepository.findByTituloAndDataPublicacaoBeforeOrderByDataPublicacaoDesc(titulo, dataPublicacao, pageable);
   }
-
-
-
+  
+  public Flux<Video> findAll(Pageable pageable) {
+      return videoRepository.findAllPagedOrderByDataPublicacaoDesc(pageable);
+  }
   public Mono<Video> findById(int id){
     return videoRepository.findById(id);
   }
