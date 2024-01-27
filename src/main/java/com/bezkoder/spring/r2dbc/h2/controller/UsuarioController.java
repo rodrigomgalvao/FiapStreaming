@@ -1,5 +1,9 @@
 package com.bezkoder.spring.r2dbc.h2.controller;
 
+import com.bezkoder.spring.r2dbc.h2.controller.dto.UsuarioDto;
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.Path;
+import jakarta.validation.Validator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -23,48 +27,56 @@ import com.bezkoder.spring.r2dbc.h2.service.VideoCategoriaService;
 
 import reactor.core.publisher.Mono;
 
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 
 @RestController
 @RequestMapping("/api")
 public class UsuarioController {
-  @Autowired
-  UsuarioService usuarioService;
-  
+    @Autowired
+    UsuarioService usuarioService;
 
+    @Autowired
+    Validator validator;
 
-  
-  @GetMapping("/usuario/{id}")
-  @ResponseStatus(HttpStatus.OK)
-  public Mono<Usuario> getUsuarioById(@PathVariable("id") int id) {
-	   return usuarioService.findById(id);
+    @GetMapping("/usuario/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Mono<Usuario> getUsuarioById(@PathVariable("id") int id) {
+        return usuarioService.findById(id);
 
-  }
+    }
 
-  @PostMapping("/usuario")
-  @ResponseStatus(HttpStatus.CREATED)
-  public Mono<Usuario> createUsuario(@RequestBody Usuario usuario) {
-    return usuarioService.save(usuario);
-  }
-  
+    @PostMapping("/usuario")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Mono<Usuario> createUsuario(@RequestBody Usuario usuario) {
+        return usuarioService.save(usuario);
+    }
 
+    @PutMapping("/usuario/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Mono<Usuario> updateUsuario(@PathVariable("id") int id, @RequestBody Usuario usuario) {
+        return usuarioService.update(id, usuario);
+    }
 
-  @PutMapping("/usuario/{id}")
-  @ResponseStatus(HttpStatus.OK)
-  public Mono<Usuario> updateUsuario(@PathVariable("id") int id, @RequestBody Usuario usuario) {
-	  return usuarioService.update(id, usuario);
-  }
+    @DeleteMapping("/usuario/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public Mono<Void> deleteVideoCategoria(@PathVariable("id") int id) {
+        return usuarioService.deleteById(id);
+    }
 
-  @DeleteMapping("/usuario/{id}")
-  @ResponseStatus(HttpStatus.NO_CONTENT)
-  public Mono<Void> deleteVideoCategoria(@PathVariable("id") int id) {
-    return usuarioService.deleteById(id);
-  }
+    @DeleteMapping("/usuario")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public Mono<Void> deleteAllUsuarios() {
+        return usuarioService.deleteAll();
+    }
 
-  @DeleteMapping("/usuario")
-  @ResponseStatus(HttpStatus.NO_CONTENT)
-  public Mono<Void> deleteAllUsuarios() {
-    return usuarioService.deleteAll();
-  }
-
+    private <T> Map<Path, String> validar(T dto) {
+        Set<ConstraintViolation<T>> violacoes = validator.validate(dto);
+        Map<Path, String> violacoesMap = violacoes.stream()
+                .collect(Collectors.toMap(violacao -> violacao.getPropertyPath(), violacao -> violacao.getMessage()));
+        return violacoesMap;
+    }
 
 }

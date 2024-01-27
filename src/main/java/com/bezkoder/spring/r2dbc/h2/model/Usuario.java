@@ -18,6 +18,9 @@ public class Usuario {
 	private int id;
 	
 	private String nomeUsuario;
-	
-	
+
+
+	public Usuario(String nomeUsuario) {
+		this.nomeUsuario = nomeUsuario;
+	}
 }
