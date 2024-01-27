@@ -21,10 +21,15 @@ public class VideoService {
   @Autowired
   VideoRepository videoRepository;
 
-  public Flux<Video> findByTituloAndDataPublicacaoBeforeOrderByDataPublicacaoDesc(String titulo, LocalDate dataPublicacao, Pageable pageable) {
-      return videoRepository.findByTituloAndDataPublicacaoBeforeOrderByDataPublicacaoDesc(titulo, dataPublicacao, pageable);
-  }
+//  public Flux<Video> findByTituloAndDataPublicacaoBeforeOrderByDataPublicacaoDesc(String titulo, LocalDate dataPublicacao, Pageable pageable) {
+//      return videoRepository.findByTituloAndDataPublicacaoBeforeOrderByDataPublicacaoDesc(titulo, dataPublicacao, pageable);
+//  }
+//  
   
+  public Flux<Video> findByTituloAndDataPublicacaoBeforeOrderByDataPublicacaoDesc(String titulo, LocalDate dataPublicacao) {
+	    return videoRepository.findByTituloAndDataPublicacaoBeforeOrderByDataPublicacaoDesc(titulo, dataPublicacao);
+	}
+
   public Flux<Video> findAll(Pageable pageable) {
       return videoRepository.findAllPagedOrderByDataPublicacaoDesc(pageable);
   }

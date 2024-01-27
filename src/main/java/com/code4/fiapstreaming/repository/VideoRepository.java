@@ -19,7 +19,7 @@ public interface VideoRepository extends R2dbcRepository<Video, Integer>{
 
 
     @Query("SELECT * FROM video WHERE titulo_video LIKE :titulo AND data_publicacao <= :dataPublicacao ORDER BY data_publicacao DESC")
-    Flux<Video> findByTituloAndDataPublicacaoBeforeOrderByDataPublicacaoDesc(String titulo, LocalDate dataPublicacao, Pageable pageable);
+    Flux<Video> findByTituloAndDataPublicacaoBeforeOrderByDataPublicacaoDesc(String titulo, LocalDate dataPublicacao);
 }
 
 

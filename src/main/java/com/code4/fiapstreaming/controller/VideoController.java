@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -24,74 +25,94 @@ import com.code4.fiapstreaming.service.VideoService;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-
 @RestController
 @RequestMapping("/api")
 public class VideoController {
-    @Autowired
-    VideoService videoService;
+	@Autowired
+	VideoService videoService;
 
+	@GetMapping("/video/{id}")
+	@ResponseStatus(HttpStatus.OK)
+	public Mono<Video> getVideoById(@PathVariable("id") int id) {
+		return videoService.findById(id);
 
-    @GetMapping("/video/{id}")
-    @ResponseStatus(HttpStatus.OK)
-    public Mono<Video> getVideoById(@PathVariable("id") int id) {
-        return videoService.findById(id);
+	}
 
-    }
-    
-    @GetMapping("/videosFilter")
-    @ResponseStatus(HttpStatus.OK)
-    public Flux<Object> getVideos(@RequestParam(required = false) String titulo,
-                                  @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dataPublicacao,
-                                  @RequestParam(defaultValue = "0") int page,
-                                  @RequestParam(defaultValue = "3") int size) {
-        if (titulo == null && dataPublicacao == null) {
-            return Flux.just("Por favor, forneça critérios de busca (titulo e/ou dataPublicacao).");
-        }
-        
-        Pageable pageable = PageRequest.of(page, size);
-        Flux<Video> videos = videoService.findByTituloAndDataPublicacaoBeforeOrderByDataPublicacaoDesc(titulo, dataPublicacao, pageable);
-        
-        return videos
-                .map(video -> (Object) video)
-                .defaultIfEmpty("Nenhum vídeo encontrado com os critérios de busca.");
-    }
+//    @GetMapping("/videosFilter")
+//    @ResponseStatus(HttpStatus.OK)
+//    public Flux<Object> getVideos(@RequestParam(required = false) String titulo,
+//                                  @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dataPublicacao,
+//                                  @RequestParam(defaultValue = "0") int page,
+//                                  @RequestParam(defaultValue = "3") int size) {
+//        if (titulo == null && dataPublicacao == null) {
+//            return Flux.just("Por favor, forneça critérios de busca (titulo e/ou dataPublicacao).");
+//        }
+//        
+//        Pageable pageable = PageRequest.of(page, size);
+//        Flux<Video> videos = videoService.findByTituloAndDataPublicacaoBeforeOrderByDataPublicacaoDesc(titulo, dataPublicacao, pageable);
+//        
+//        return videos
+//                .map(video -> (Object) video)
+//                .defaultIfEmpty("Nenhum vídeo encontrado com os critérios de busca.");
+//    }
 
- 
-    
-    
-    @GetMapping("/videos")
-    @ResponseStatus(HttpStatus.OK)
-    public Flux<Video> getVideos(@RequestParam(defaultValue = "0") int page,
-                                 @RequestParam(defaultValue = "10") int size) {
-        Pageable pageable = PageRequest.of(page, size);
-        return videoService.findAll(pageable);
-    }
+	@GetMapping("/videosFilter")
+	@ResponseStatus(HttpStatus.OK)
+	public Flux<Object> getVideos(@RequestParam(required = false) String titulo,
+			@RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dataPublicacao) {
+		if (titulo == null && dataPublicacao == null) {
+			return Flux.just("Por favor, forneça critérios de busca (titulo e/ou dataPublicacao).");
+		}
 
-    @PostMapping("/video")
-    @ResponseStatus(HttpStatus.CREATED)
-    public Mono<Video> createVideo(@RequestBody Video Video) {
-        return videoService.save(Video);
-    }
+		Flux<Video> videos = videoService.findByTituloAndDataPublicacaoBeforeOrderByDataPublicacaoDesc(titulo,
+				dataPublicacao);
 
+		return videos.map(video -> (Object) video).defaultIfEmpty("Nenhum vídeo encontrado com os critérios de busca.");
+	}
 
-    @PutMapping("/video/{id}")
-    @ResponseStatus(HttpStatus.OK)
-    public Mono<Video> updateVideo(@PathVariable("id") int id, @RequestBody Video Video) {
-        return videoService.update(id, Video);
-    }
+//    @GetMapping("/videos")
+//    @ResponseStatus(HttpStatus.OK)
+//    public Flux<Video> getVideos(@RequestParam(defaultValue = "0") int page,
+//                                 @RequestParam(defaultValue = "3") int size) {
+//        Pageable pageable = PageRequest.of(page, size);
+//        return videoService.findAll(pageable);
+//    }
+//    
 
-    @DeleteMapping("/video/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public Mono<Void> deleteVideo(@PathVariable("id") int id) {
-        return videoService.deleteById(id);
-    }
+	@GetMapping("/videos")
+	@ResponseStatus(HttpStatus.OK)
+	public Flux<Video> getVideos(@RequestParam(defaultValue = "0") int page,
+			@RequestParam(defaultValue = "3") int size) {
 
-    @DeleteMapping("/video")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public Mono<Void> deleteAllVideos() {
-        return videoService.deleteAll();
-    }
+		Pageable pageable = PageRequest.of(page, size);
 
+		pageable = PageRequest.of(page, size, Sort.by("dataPublicacao").descending());
+
+		return videoService.findAll(pageable);
+	}
+
+	@PostMapping("/video")
+	@ResponseStatus(HttpStatus.CREATED)
+	public Mono<Video> createVideo(@RequestBody Video Video) {
+		return videoService.save(Video);
+	}
+
+	@PutMapping("/video/{id}")
+	@ResponseStatus(HttpStatus.OK)
+	public Mono<Video> updateVideo(@PathVariable("id") int id, @RequestBody Video Video) {
+		return videoService.update(id, Video);
+	}
+
+	@DeleteMapping("/video/{id}")
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public Mono<Void> deleteVideo(@PathVariable("id") int id) {
+		return videoService.deleteById(id);
+	}
+
+	@DeleteMapping("/video")
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public Mono<Void> deleteAllVideos() {
+		return videoService.deleteAll();
+	}
 
 }
