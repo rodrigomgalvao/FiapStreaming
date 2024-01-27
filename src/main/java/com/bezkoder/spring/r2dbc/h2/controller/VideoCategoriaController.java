@@ -31,14 +31,14 @@ public class VideoCategoriaController {
 
 
   
-  @GetMapping("/VideoCategorias/{id}")
+  @GetMapping("/videoCategorias/{id}")
   @ResponseStatus(HttpStatus.OK)
   public Mono<VideoCategoria> getVideoCategoriaById(@PathVariable("id") int id) {
 	   return videoCategoriaService.findById(id);
 
   }
 
-  @PostMapping("/VideoCategorias")
+  @PostMapping("/videoCategorias")
   @ResponseStatus(HttpStatus.CREATED)
   public Mono<VideoCategoria> createVideoCategoria(@RequestBody VideoCategoria videoCategoria) {
     return videoCategoriaService.save(videoCategoria);
@@ -46,19 +46,19 @@ public class VideoCategoriaController {
   
 
 
-  @PutMapping("/VideoCategorias/{id}")
+  @PutMapping("/videoCategorias/{id}")
   @ResponseStatus(HttpStatus.OK)
   public Mono<VideoCategoria> updateVideoCategoria(@PathVariable("id") int id, @RequestBody VideoCategoria videoCategoria) {
 	  return videoCategoriaService.update(id, videoCategoria);
   }
 
-  @DeleteMapping("/VideoCategorias/{id}")
+  @DeleteMapping("/videoCategorias/{id}")
   @ResponseStatus(HttpStatus.NO_CONTENT)
   public Mono<Void> deleteVideoCategoria(@PathVariable("id") int id) {
     return videoCategoriaService.deleteById(id);
   }
 
-  @DeleteMapping("/VideoCategorias")
+  @DeleteMapping("/videoCategorias")
   @ResponseStatus(HttpStatus.NO_CONTENT)
   public Mono<Void> deleteAllVideoCategorias() {
     return videoCategoriaService.deleteAll();
