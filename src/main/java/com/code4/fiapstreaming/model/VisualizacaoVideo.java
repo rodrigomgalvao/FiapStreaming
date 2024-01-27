@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
 
 @Getter
@@ -17,5 +18,5 @@ public class VisualizacaoVideo {
     private int id;
     private int idUsuario;
     private int idVideo;
-    private LocalTime dataHoraVisualizacao;
+    private LocalDate dataVisualizacao = LocalDate.now();
 }

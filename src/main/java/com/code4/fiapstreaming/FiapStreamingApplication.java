@@ -14,7 +14,7 @@ import io.r2dbc.spi.ConnectionFactory;
 @EnableWebFlux
 //@EnableR2dbcRepositories
 @SpringBootApplication
-public class SpringBootR2dbcH2ExampleApplication {
+public class FiapStreamingApplication {
 
   @Bean
   ConnectionFactoryInitializer initializer(ConnectionFactory connectionFactory) {
@@ -27,7 +27,7 @@ public class SpringBootR2dbcH2ExampleApplication {
   }
 
   public static void main(String[] args) {
-    SpringApplication.run(SpringBootR2dbcH2ExampleApplication.class, args);
+    SpringApplication.run(FiapStreamingApplication.class, args);
   }
 
 }

@@ -9,11 +9,11 @@
 		<version>3.0.2</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.bezkoder</groupId>
-	<artifactId>spring-boot-r2dbc-h2-example</artifactId>
+	<groupId>com.code4</groupId>
+	<artifactId>fiapstreaming</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>spring-boot-r2dbc-h2-example</name>
-	<description>Spring Boot R2DBC and H2 example: CRUD Rest API</description>
+	<name>fiapstreaming</name>
+	<description>Spring Boot R2DBC and H2</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>

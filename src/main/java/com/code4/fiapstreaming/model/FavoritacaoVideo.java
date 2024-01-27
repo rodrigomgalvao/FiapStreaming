@@ -18,7 +18,7 @@ public class FavoritacaoVideo {
 
     @Id
     private int id;
-    private LocalDate dataPublicacao;
+    private LocalDate dataFavoritacao =  LocalDate.now();
     private int idUsuario;
     private int idVideo;
 

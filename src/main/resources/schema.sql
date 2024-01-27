@@ -27,6 +27,7 @@ CREATE TABLE IF NOT EXISTS video
 CREATE TABLE IF NOT EXISTS visualizacao_video
 (
     id         INT NOT NULL AUTO_INCREMENT,
+     data_visualizacao DATE,
     id_usuario INT,
     id_video   INT,
     PRIMARY KEY (id),
@@ -37,7 +38,7 @@ CREATE TABLE IF NOT EXISTS visualizacao_video
 CREATE TABLE IF NOT EXISTS favoritacao_video
 (
     id              INT NOT NULL AUTO_INCREMENT,
-    data_publicacao DATE,
+    data_favoritacao DATE,
     id_usuario      INT,
     id_video        INT,
     PRIMARY KEY (id),
