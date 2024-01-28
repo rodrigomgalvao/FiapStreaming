@@ -25,7 +25,7 @@ public class FavoritacaoVideoController {
 	FavoritacaoVideoService favoritacaoVideoService;
 
 	@PostMapping("/marcarComoFavorito")
-	public Mono<FavoritacaoVideo> marcarComoFavorito(@RequestBody Map<String, Integer> requestBody) {
+	public Mono<FavoritacaoVideo> marcarComoFavorito(@RequestBody Map<String, UUID> requestBody) {
 		UUID idUsuario = requestBody.get("idUsuario");
 		UUID idVideo = requestBody.get("idVideo");
 
@@ -37,9 +37,9 @@ public class FavoritacaoVideoController {
 	}
 
 	@PostMapping("/desmarcarComoFavorito")
-	public Mono<String> desmarcarComoFavorito(@RequestBody Map<String, Integer> requestBody) {
-		Integer idUsuario = requestBody.get("idUsuario");
-		Integer idVideo = requestBody.get("idVideo");
+	public Mono<String> desmarcarComoFavorito(@RequestBody Map<String, UUID> requestBody) {
+		UUID idUsuario = requestBody.get("idUsuario");
+		UUID idVideo = requestBody.get("idVideo");
 
 		if (idUsuario != null && idVideo != null) {
 			return favoritacaoVideoService.desmarcarComoFavorito(idUsuario, idVideo)
