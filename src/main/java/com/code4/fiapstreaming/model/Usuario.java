@@ -1,11 +1,9 @@
 package com.code4.fiapstreaming.model;
 
+import lombok.*;
 import org.springframework.data.annotation.Id;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import java.util.UUID;
 
 
 @Getter
@@ -15,7 +13,7 @@ import lombok.Setter;
 public class Usuario {
 
 	@Id
-	private int id;
+	private UUID id;
 	
 	private String nomeUsuario;
 

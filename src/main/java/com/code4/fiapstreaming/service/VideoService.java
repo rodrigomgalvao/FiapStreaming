@@ -2,15 +2,14 @@ package com.code4.fiapstreaming.service;
 
 import java.time.LocalDate;
 import java.util.Optional;
+import java.util.UUID;
 
+import com.code4.fiapstreaming.repository.VideoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Slice;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.code4.fiapstreaming.model.Video;
-import com.code4.fiapstreaming.repository.VideoRepository;
 
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -33,7 +32,7 @@ public class VideoService {
   public Flux<Video> findAll(Pageable pageable) {
       return videoRepository.findAllByOrderByDataPublicacaoDesc(pageable);
   }
-  public Mono<Video> findById(int id){
+  public Mono<Video> findById(UUID id){
     return videoRepository.findById(id);
   }
 
@@ -41,7 +40,7 @@ public class VideoService {
     return videoRepository.save(video);
   }
 
-  public Mono<Video> update(int id, Video video) {
+  public Mono<Video> update(UUID id, Video video) {
     return videoRepository.findById(id).map(Optional::of).defaultIfEmpty(Optional.empty())
         .flatMap(optionalVideoCategoria -> {
           if (optionalVideoCategoria.isPresent()) {
@@ -53,7 +52,7 @@ public class VideoService {
         });
   }
 
-  public Mono<Void> deleteById(int id) {
+  public Mono<Void> deleteById(UUID id) {
     return videoRepository.deleteById(id);
   }
 

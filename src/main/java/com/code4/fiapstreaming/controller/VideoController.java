@@ -1,10 +1,9 @@
 package com.code4.fiapstreaming.controller;
 
 import java.time.LocalDate;
-import java.util.stream.Collectors;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -35,7 +34,7 @@ public class VideoController {
 
 	@GetMapping("/video/{id}")
 	@ResponseStatus(HttpStatus.OK)
-	public Mono<Video> getVideoById(@PathVariable("id") int id) {
+	public Mono<Video> getVideoById(@PathVariable("id") UUID id) {
 		return videoService.findById(id);
 
 	}
@@ -86,13 +85,13 @@ public class VideoController {
 
 	@PutMapping("/video/{id}")
 	@ResponseStatus(HttpStatus.OK)
-	public Mono<Video> updateVideo(@PathVariable("id") int id, @RequestBody Video Video) {
+	public Mono<Video> updateVideo(@PathVariable("id") UUID id, @RequestBody Video Video) {
 		return videoService.update(id, Video);
 	}
 
 	@DeleteMapping("/video/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public Mono<Void> deleteVideo(@PathVariable("id") int id) {
+	public Mono<Void> deleteVideo(@PathVariable("id") UUID id) {
 		return videoService.deleteById(id);
 	}
 

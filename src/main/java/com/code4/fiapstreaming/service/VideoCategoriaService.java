@@ -1,12 +1,13 @@
 package com.code4.fiapstreaming.service;
 
 import java.util.Optional;
+import java.util.UUID;
 
+import com.code4.fiapstreaming.repository.VideoCategoriaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.code4.fiapstreaming.model.VideoCategoria;
-import com.code4.fiapstreaming.repository.VideoCategoriaRepository;
 
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -23,7 +24,7 @@ public class VideoCategoriaService {
 
 
 
-  public Mono<VideoCategoria> findById(int id){
+  public Mono<VideoCategoria> findById(UUID id){
     return videoCategoriaRepository.findById(id);
   }
 
@@ -31,7 +32,7 @@ public class VideoCategoriaService {
     return videoCategoriaRepository.save(videoCategoria);
   }
 
-  public Mono<VideoCategoria> update(int id, VideoCategoria videoCategoria) {
+  public Mono<VideoCategoria> update(UUID id, VideoCategoria videoCategoria) {
     return videoCategoriaRepository.findById(id).map(Optional::of).defaultIfEmpty(Optional.empty())
         .flatMap(optionalVideoCategoria -> {
           if (optionalVideoCategoria.isPresent()) {
@@ -43,7 +44,7 @@ public class VideoCategoriaService {
         });
   }
 
-  public Mono<Void> deleteById(int id) {
+  public Mono<Void> deleteById(UUID id) {
     return videoCategoriaRepository.deleteById(id);
   }
 

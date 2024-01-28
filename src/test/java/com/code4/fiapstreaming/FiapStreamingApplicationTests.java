@@ -1,4 +1,4 @@
-package com.code4;
+package com.code4.fiapstreaming;
 
 import org.springframework.boot.test.context.SpringBootTest;
 

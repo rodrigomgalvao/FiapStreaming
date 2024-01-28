@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 
+import java.util.UUID;
+
 @RestController
 @RequestMapping("/api")
 public class VisualizacaoVideoController {
@@ -16,7 +18,7 @@ public class VisualizacaoVideoController {
 
     @GetMapping("/visualizacaovideo/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Mono<VisualizacaoVideo> getVisualizacaoVideoById(@PathVariable("id") int id) {
+    public Mono<VisualizacaoVideo> getVisualizacaoVideoById(@PathVariable("id") UUID id) {
         return visualizacaoVideoService.findById(id);
 
     }
@@ -29,13 +31,13 @@ public class VisualizacaoVideoController {
 
     @PutMapping("/visualizacaovideo/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Mono<VisualizacaoVideo> updateVisualizacaoVideo(@PathVariable("id") int id, @RequestBody VisualizacaoVideo visualizacaoVideo) {
+    public Mono<VisualizacaoVideo> updateVisualizacaoVideo(@PathVariable("id") UUID id, @RequestBody VisualizacaoVideo visualizacaoVideo) {
         return visualizacaoVideoService.update(id, visualizacaoVideo);
     }
 
     @DeleteMapping("/visualizacaovideo/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public Mono<Void> deleteVisualizacaoVideo(@PathVariable("id") int id) {
+    public Mono<Void> deleteVisualizacaoVideo(@PathVariable("id") UUID id) {
         return visualizacaoVideoService.deleteById(id);
     }
 

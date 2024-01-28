@@ -5,9 +5,6 @@ import jakarta.validation.Path;
 import jakarta.validation.Validator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,18 +14,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.server.ResponseStatusException;
 
-import com.code4.fiapstreaming.controller.dto.UsuarioDto;
 import com.code4.fiapstreaming.model.Usuario;
-import com.code4.fiapstreaming.model.VideoCategoria;
 import com.code4.fiapstreaming.service.UsuarioService;
-import com.code4.fiapstreaming.service.VideoCategoriaService;
 
 import reactor.core.publisher.Mono;
 
 import java.util.Map;
 import java.util.Set;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 
@@ -40,14 +34,12 @@ public class UsuarioController {
 
     @Autowired
     Validator validator;
-
     @GetMapping("/usuario/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Mono<Usuario> getUsuarioById(@PathVariable("id") int id) {
+    public Mono<Usuario> getUsuarioById(@PathVariable("id") UUID id) {
         return usuarioService.findById(id);
 
     }
-
     @PostMapping("/usuario")
     @ResponseStatus(HttpStatus.CREATED)
     public Mono<Usuario> createUsuario(@RequestBody Usuario usuario) {
@@ -56,13 +48,13 @@ public class UsuarioController {
 
     @PutMapping("/usuario/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Mono<Usuario> updateUsuario(@PathVariable("id") int id, @RequestBody Usuario usuario) {
+    public Mono<Usuario> updateUsuario(@PathVariable("id") UUID id, @RequestBody Usuario usuario) {
         return usuarioService.update(id, usuario);
     }
 
     @DeleteMapping("/usuario/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public Mono<Void> deleteVideoCategoria(@PathVariable("id") int id) {
+    public Mono<Void> deleteVideoCategoria(@PathVariable("id") UUID id) {
         return usuarioService.deleteById(id);
     }
 

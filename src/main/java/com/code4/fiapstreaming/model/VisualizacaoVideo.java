@@ -8,6 +8,7 @@ import org.springframework.data.annotation.Id;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -15,8 +16,8 @@ import java.time.LocalTime;
 @AllArgsConstructor
 public class VisualizacaoVideo {
     @Id
-    private int id;
-    private int idUsuario;
-    private int idVideo;
+    private UUID id;
+    private UUID idUsuario;
+    private UUID idVideo;
     private LocalDate dataVisualizacao = LocalDate.now();
 }

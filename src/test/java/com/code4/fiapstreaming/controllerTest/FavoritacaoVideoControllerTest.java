@@ -1,4 +1,4 @@
-package com.code4.controllerTest;
+package com.code4.fiapstreaming.controllerTest;
 
 
 

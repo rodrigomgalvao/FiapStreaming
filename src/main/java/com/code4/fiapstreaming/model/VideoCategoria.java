@@ -8,21 +8,15 @@ import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.Setter;
 
+import java.util.UUID;
+
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class VideoCategoria {
-  
   @Id
-  private int id;
-  
-  @NonNull
+  private UUID id;
   private String titulo;
-
-
-
-
-
 
 }

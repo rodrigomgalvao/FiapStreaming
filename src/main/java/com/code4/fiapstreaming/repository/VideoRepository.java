@@ -1,6 +1,7 @@
 package com.code4.fiapstreaming.repository;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.r2dbc.repository.Query;
@@ -10,7 +11,7 @@ import com.code4.fiapstreaming.model.Video;
 
 import reactor.core.publisher.Flux;
 
-public interface VideoRepository extends R2dbcRepository<Video, Integer>{
+public interface VideoRepository extends R2dbcRepository<Video, UUID>{
 
 
 //    @Query("SELECT * FROM video ORDER BY data_publicacao DESC")

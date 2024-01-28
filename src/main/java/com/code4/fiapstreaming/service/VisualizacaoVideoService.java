@@ -1,7 +1,7 @@
 package com.code4.fiapstreaming.service;
 
-import com.code4.fiapstreaming.model.VisualizacaoVideo;
 import com.code4.fiapstreaming.repository.VisualizacaoVideoRepository;
+import com.code4.fiapstreaming.model.VisualizacaoVideo;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,6 +9,7 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class VisualizacaoVideoService {
@@ -17,13 +18,13 @@ public class VisualizacaoVideoService {
     public Flux<VisualizacaoVideo> findAll() {
         return visualizacaoVideoRepository.findAll();
     }
-    public Mono<VisualizacaoVideo> findById(int id){
+    public Mono<VisualizacaoVideo> findById(UUID id){
         return visualizacaoVideoRepository.findById(id);
     }
     public Mono<VisualizacaoVideo> save(VisualizacaoVideo visualizacaoVideo) {
         return visualizacaoVideoRepository.save(visualizacaoVideo);
     }
-    public Mono<VisualizacaoVideo> update(int id, VisualizacaoVideo visualizacaoVideo) {
+    public Mono<VisualizacaoVideo> update(UUID id, VisualizacaoVideo visualizacaoVideo) {
         return visualizacaoVideoRepository.findById(id).map(Optional::of).defaultIfEmpty(Optional.empty())
                 .flatMap(optionalVideoCategoria -> {
                     if (optionalVideoCategoria.isPresent()) {
@@ -34,7 +35,7 @@ public class VisualizacaoVideoService {
                     return Mono.empty();
                 });
     }
-    public Mono<Void> deleteById(int id) {
+    public Mono<Void> deleteById(UUID id) {
         return visualizacaoVideoRepository.deleteById(id);
     }
     public Mono<Void> deleteAll() {

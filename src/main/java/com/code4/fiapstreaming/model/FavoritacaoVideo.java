@@ -1,6 +1,7 @@
 package com.code4.fiapstreaming.model;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 import org.springframework.data.annotation.Id;
 
@@ -17,9 +18,9 @@ public class FavoritacaoVideo {
 
 
     @Id
-    private int id;
+    private UUID id;
+    private UUID idUsuario;
+    private UUID idVideo;
     private LocalDate dataFavoritacao =  LocalDate.now();
-    private int idUsuario;
-    private int idVideo;
 
 }

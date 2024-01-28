@@ -1,6 +1,7 @@
 package com.code4.fiapstreaming.model;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 import org.springframework.data.annotation.Id;
 
@@ -17,11 +18,11 @@ public class Video {
 	
 	
 	@Id
-	private int id;
+	private UUID id;
 	private String tituloVideo;
 	private String descricao;
 	private String url;
 	private LocalDate dataPublicacao;
-	private int idCategoria;
+	private UUID idCategoria;
 
 }
