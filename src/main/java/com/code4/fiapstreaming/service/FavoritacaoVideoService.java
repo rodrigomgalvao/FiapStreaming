@@ -51,5 +51,15 @@ public class FavoritacaoVideoService {
         return favoritacaoVideoRepository.deleteAll();
     }
 
+    public Mono<FavoritacaoVideo> marcarComoFavorito(int idUsuario, int idVideo) {
+    	FavoritacaoVideo favorito = new FavoritacaoVideo();
+        favorito.setIdUsuario(idUsuario);
+        favorito.setIdVideo(idVideo);
+        return favoritacaoVideoRepository.save(favorito);
+    }
+
+    public Mono<Void> desmarcarComoFavorito(int idUsuario, int idVideo) {
+        return favoritacaoVideoRepository.deleteByUsuarioIdAndVideoId(idUsuario, idVideo);
+    }
 
 }
