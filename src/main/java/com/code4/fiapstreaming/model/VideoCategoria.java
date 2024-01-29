@@ -5,7 +5,6 @@ import org.springframework.data.annotation.Id;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
 import lombok.Setter;
 
 import java.util.UUID;

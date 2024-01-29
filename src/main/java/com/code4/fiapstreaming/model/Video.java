@@ -16,7 +16,6 @@ import lombok.Setter;
 @AllArgsConstructor
 public class Video {
 	
-	
 	@Id
 	private UUID id;
 	private String tituloVideo;

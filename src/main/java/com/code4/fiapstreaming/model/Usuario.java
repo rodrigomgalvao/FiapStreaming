@@ -14,11 +14,6 @@ public class Usuario {
 
 	@Id
 	private UUID id;
-	
 	private String nomeUsuario;
 
-
-	public Usuario(String nomeUsuario) {
-		this.nomeUsuario = nomeUsuario;
-	}
 }
