@@ -48,9 +48,5 @@ public class VideoCategoriaService {
     return videoCategoriaRepository.deleteById(id);
   }
 
-  public Mono<Void> deleteAll() {
-    return videoCategoriaRepository.deleteAll();
-  }
-
 
 }

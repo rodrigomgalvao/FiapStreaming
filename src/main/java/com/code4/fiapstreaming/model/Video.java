@@ -22,7 +22,7 @@ public class Video {
 	private String tituloVideo;
 	private String descricao;
 	private String url;
-	private LocalDate dataPublicacao;
+	private LocalDate dataPublicacao = LocalDate.now();
 	private UUID idCategoria;
 
 }

@@ -22,8 +22,6 @@ public class FavoritacaoVideoService {
         return favoritacaoVideoRepository.findAll();
     }
 
-
-
     public Mono<FavoritacaoVideo> findById(UUID id){
         return favoritacaoVideoRepository.findById(id);
     }
@@ -46,10 +44,6 @@ public class FavoritacaoVideoService {
 
     public Mono<Void> deleteById(UUID id) {
         return favoritacaoVideoRepository.deleteById(id);
-    }
-
-    public Mono<Void> deleteAll() {
-        return favoritacaoVideoRepository.deleteAll();
     }
 
     public Mono<FavoritacaoVideo> marcarComoFavorito(UUID idUsuario, UUID idVideo) {

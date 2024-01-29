@@ -12,7 +12,7 @@ import java.util.UUID;
 
 @Getter
 @Setter
-@NoArgsConstructor
+//@NoArgsConstructor
 @AllArgsConstructor
 public class VisualizacaoVideo {
     @Id

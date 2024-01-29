@@ -17,48 +17,42 @@ import reactor.core.publisher.Mono;
 @Service
 public class VideoService {
 
-  @Autowired
-  VideoRepository videoRepository;
+    @Autowired
+    VideoRepository videoRepository;
 
-//  public Flux<Video> findByTituloAndDataPublicacaoBeforeOrderByDataPublicacaoDesc(String titulo, LocalDate dataPublicacao, Pageable pageable) {
-//      return videoRepository.findByTituloAndDataPublicacaoBeforeOrderByDataPublicacaoDesc(titulo, dataPublicacao, pageable);
-//  }
-//  
-  
-  public Flux<Video> findByTituloAndDataPublicacaoBeforeOrderByDataPublicacaoDesc(String titulo, LocalDate dataPublicacao) {
-	    return videoRepository.findByTituloAndDataPublicacaoBeforeOrderByDataPublicacaoDesc(titulo, dataPublicacao);
-	}
+    public Flux<Video> findByTituloAndDataPublicacaoBeforeOrderByDataPublicacaoDesc(String titulo, LocalDate dataPublicacao) {
+        return videoRepository.findByTituloAndDataPublicacaoBeforeOrderByDataPublicacaoDesc(titulo, dataPublicacao);
+    }
 
-  public Flux<Video> findAll(Pageable pageable) {
-      return videoRepository.findAllByOrderByDataPublicacaoDesc(pageable);
-  }
-  public Mono<Video> findById(UUID id){
-    return videoRepository.findById(id);
-  }
+    public Flux<Video> findAll(Pageable pageable) {
+        return videoRepository.findAllByOrderByDataPublicacaoDesc(pageable);
+    }
 
-  public Mono<Video> save(Video video) {
-    return videoRepository.save(video);
-  }
+    public Mono<Video> findById(UUID id) {
+        return videoRepository.findById(id);
+    }
 
-  public Mono<Video> update(UUID id, Video video) {
-    return videoRepository.findById(id).map(Optional::of).defaultIfEmpty(Optional.empty())
-        .flatMap(optionalVideoCategoria -> {
-          if (optionalVideoCategoria.isPresent()) {
-        	  video.setId(id);
-            return videoRepository.save(video);
-          }
+    public Flux<Video> findByIdCategory(UUID idCategoria) {
+        return videoRepository.findByIdCategoria(idCategoria);
+    }
+    public Mono<Video> save(Video video) {
+        return videoRepository.save(video);
+    }
 
-          return Mono.empty();
-        });
-  }
+    public Mono<Video> update(UUID id, Video video) {
+        return videoRepository.findById(id).map(Optional::of).defaultIfEmpty(Optional.empty())
+                .flatMap(optionalVideoCategoria -> {
+                    if (optionalVideoCategoria.isPresent()) {
+                        video.setId(id);
+                        return videoRepository.save(video);
+                    }
 
-  public Mono<Void> deleteById(UUID id) {
-    return videoRepository.deleteById(id);
-  }
+                    return Mono.empty();
+                });
+    }
 
-  public Mono<Void> deleteAll() {
-    return videoRepository.deleteAll();
-  }
-
+    public Mono<Void> deleteById(UUID id) {
+        return videoRepository.deleteById(id);
+    }
 
 }

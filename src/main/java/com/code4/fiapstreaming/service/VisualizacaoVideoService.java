@@ -38,7 +38,5 @@ public class VisualizacaoVideoService {
     public Mono<Void> deleteById(UUID id) {
         return visualizacaoVideoRepository.deleteById(id);
     }
-    public Mono<Void> deleteAll() {
-        return visualizacaoVideoRepository.deleteAll();
-    }
+
 }

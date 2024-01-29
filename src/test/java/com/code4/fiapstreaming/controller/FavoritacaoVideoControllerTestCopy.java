@@ -1,4 +1,4 @@
-package com.code4.fiapstreaming.controllerTest;
+package com.code4.fiapstreaming.controller;
 
 
 
@@ -18,13 +18,12 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import com.code4.fiapstreaming.controller.FavoritacaoVideoController;
 import com.code4.fiapstreaming.service.FavoritacaoVideoService;
 
 import reactor.core.publisher.Mono;
 
 @ExtendWith(MockitoExtension.class)
-class FavoritacaoVideoControllerTest {
+class FavoritacaoVideoControllerTestCopy {
 
     @Mock
     FavoritacaoVideoService favoritacaoVideoService;

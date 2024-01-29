@@ -1,10 +1,9 @@
 package com.code4.fiapstreaming.controller;
 
-import jakarta.validation.ConstraintViolation;
-import jakarta.validation.Path;
 import jakarta.validation.Validator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,18 +11,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.code4.fiapstreaming.model.Usuario;
 import com.code4.fiapstreaming.service.UsuarioService;
 
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import java.util.Map;
-import java.util.Set;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 
 @RestController
@@ -34,41 +30,26 @@ public class UsuarioController {
 
     @Autowired
     Validator validator;
-    @GetMapping("/usuario/{id}")
-    @ResponseStatus(HttpStatus.OK)
-    public Mono<Usuario> getUsuarioById(@PathVariable("id") UUID id) {
-        return usuarioService.findById(id);
-
+    @GetMapping("/usuarios/{id}")
+    public ResponseEntity<Mono<Usuario>> getUsuarioById(@PathVariable UUID id) {
+        return ResponseEntity.ok(usuarioService.findById(id));
     }
-    @PostMapping("/usuario")
-    @ResponseStatus(HttpStatus.CREATED)
-    public Mono<Usuario> createUsuario(@RequestBody Usuario usuario) {
-        return usuarioService.save(usuario);
+    @GetMapping("/usuarios")
+    public ResponseEntity<Flux<Usuario>> getAllUsuarios() {
+        return ResponseEntity.ok(usuarioService.findAll());
     }
-
-    @PutMapping("/usuario/{id}")
-    @ResponseStatus(HttpStatus.OK)
-    public Mono<Usuario> updateUsuario(@PathVariable("id") UUID id, @RequestBody Usuario usuario) {
-        return usuarioService.update(id, usuario);
+    @PostMapping("/usuarios")
+    public ResponseEntity<Mono<Usuario>> createUsuario(@RequestBody Usuario usuario) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(usuarioService.save(usuario));
     }
-
-    @DeleteMapping("/usuario/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public Mono<Void> deleteVideoCategoria(@PathVariable("id") UUID id) {
-        return usuarioService.deleteById(id);
+    @PutMapping("/usuarios/{id}")
+    public ResponseEntity<Mono<Usuario>> updateUsuario(@PathVariable UUID id, @RequestBody Usuario usuario) {
+        return ResponseEntity.ok(usuarioService.update(id, usuario));
     }
-
-    @DeleteMapping("/usuario")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public Mono<Void> deleteAllUsuarios() {
-        return usuarioService.deleteAll();
-    }
-
-    private <T> Map<Path, String> validar(T dto) {
-        Set<ConstraintViolation<T>> violacoes = validator.validate(dto);
-        Map<Path, String> violacoesMap = violacoes.stream()
-                .collect(Collectors.toMap(violacao -> violacao.getPropertyPath(), violacao -> violacao.getMessage()));
-        return violacoesMap;
+    @DeleteMapping("/usuarios/{id}")
+    public ResponseEntity<Void> deleteUsuario(@PathVariable UUID id) {
+        usuarioService.deleteById(id).subscribe();
+        return ResponseEntity.noContent().build();
     }
 
 }

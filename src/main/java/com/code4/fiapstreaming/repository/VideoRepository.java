@@ -11,16 +11,11 @@ import com.code4.fiapstreaming.model.Video;
 
 import reactor.core.publisher.Flux;
 
-public interface VideoRepository extends R2dbcRepository<Video, UUID>{
+public interface VideoRepository extends R2dbcRepository<Video, UUID> {
+    Flux<Video> findAllByOrderByDataPublicacaoDesc(Pageable pageable);
 
-
-//    @Query("SELECT * FROM video ORDER BY data_publicacao DESC")
-//    Flux<Video> findAllPagedOrderByDataPublicacaoDesc(Pageable pageable);
-	
-	
-	 Flux<Video> findAllByOrderByDataPublicacaoDesc(Pageable pageable);
-    
-
+    @Query("SELECT * FROM video WHERE id_categoria = :idCategoria")
+    Flux<Video> findByIdCategoria(UUID idCategoria);
 
     @Query("SELECT * FROM video WHERE titulo_video LIKE :titulo AND data_publicacao <= :dataPublicacao ORDER BY data_publicacao DESC")
     Flux<Video> findByTituloAndDataPublicacaoBeforeOrderByDataPublicacaoDesc(String titulo, LocalDate dataPublicacao);

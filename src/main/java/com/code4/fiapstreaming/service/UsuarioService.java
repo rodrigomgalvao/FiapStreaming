@@ -22,8 +22,6 @@ public class UsuarioService {
     return usuarioRepository.findAll();
   }
 
-
-
   public Mono<Usuario> findById(UUID id){
     return usuarioRepository.findById(id);
   }
@@ -43,14 +41,8 @@ public class UsuarioService {
           return Mono.empty();
         });
   }
-
   public Mono<Void> deleteById(UUID id) {
     return usuarioRepository.deleteById(id);
   }
-
-  public Mono<Void> deleteAll() {
-    return usuarioRepository.deleteAll();
-  }
-
 
 }
