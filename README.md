@@ -22,8 +22,31 @@ O FiapStreaming é uma aplicação de streaming de vídeos desenvolvida com Spri
 - Spring Boot Maven Plugin: Criação e execução de aplicativos Spring Boot.
 - Jacoco Maven Plugin: Análise e geração de relatórios de cobertura de código.
 
+**Modelo de dados**:
+
+<p> A fim de melhorar a compreensão do domínio do problema, foi elaborado o modelo de dados lógico abaixo: </p>
+
+<details>
+<summary>Modelo lógico de dados</summary>
+
+![modelo-dados-logico.jpeg](images%2Fmodelo-dados-logico.jpeg)
+
+</details>
+
+<p> Como vantagens percebidas ao se realizar o desenho do modelo de dados lógico, é possível destacar:
+
+**Organização e estruturação dos dados**: <p> Permite organizar e estruturar os dados de forma lógica e coerente, definindo entidades, relacionamentos e atributos necessários para representar as informações relevantes do sistema. </p>
+
+**Padronização e consistência**: <p>Proporciona um padrão para a estrutura dos dados, garantindo consistência e integridade ao longo do desenvolvimento do software e evitando inconsistências e redundâncias desnecessárias.</p>
+
+**Base para o desenvolvimento**: <p>Serve como base para o desenvolvimento do banco de dados e das camadas de persistência do software, orientando a criação das tabelas, índices, chaves estrangeiras e demais elementos necessários para armazenar e manipular os dados de forma eficiente.</p>
+
+**Manutenibilidade e evolução do sistema**: <p> Facilita a manutenção e evolução do sistema ao longo do tempo, fornecendo uma estrutura clara e organizada que permite compreender e modificar os dados de forma segura e eficaz conforme as necessidades do negócio mudam. </p>
+
+
 **Considerações Finais**:
-O FiapStreaming segue as melhores práticas de desenvolvimento de aplicativos web reativos, utilizando tecnologias modernas para garantir qualidade e eficiência. O Spring Boot, em conjunto com o plugin Jacoco Maven, contribui para a criação de uma aplicação robusta e de fácil manutenção.
+ <p> O FiapStreaming segue as melhores práticas de desenvolvimento de aplicativos web reativos, utilizando tecnologias modernas para garantir qualidade e eficiência. O Spring Boot, em conjunto com o plugin Jacoco Maven, contribui para a criação de uma aplicação robusta e de fácil manutenção. </p>
+
 
 ## 👨‍🎓 Projeto desenvolvido por:
 
