@@ -19,6 +19,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -83,13 +84,17 @@ public class VisualizacaoVideoControllerTest {
 
         // Act
         ResponseEntity<Mono<VisualizacaoVideo>> response =
-                visualizacaoVideoController.createVisualizacaoVideo(visualizacao);
+                visualizacaoVideoController.createVisualizacaoVideo1(visualizacao);
 
         // Assert
         StepVerifier.create(response.getBody())
-                .expectNext(visualizacao)
-                .verifyComplete();
+                .assertNext(body -> {
+                    assertThat(body).isEqualTo(visualizacao);
+                })
+                .expectComplete()
+                .verify();
     }
+
 
     @Test
     void updateVisualizacao() {

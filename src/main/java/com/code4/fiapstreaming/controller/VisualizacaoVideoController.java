@@ -27,10 +27,16 @@ public class VisualizacaoVideoController {
     public ResponseEntity<Flux<VisualizacaoVideo>> getAllVisualizacaoVideos() {
         return ResponseEntity.ok(visualizacaoVideoService.findAll());
     }
+
+    
     @PostMapping("/visualizacaovideos")
-    public ResponseEntity<Mono<VisualizacaoVideo>> createVisualizacaoVideo(@RequestBody VisualizacaoVideo visualizacaoVideo) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(visualizacaoVideoService.save(visualizacaoVideo));
+    public ResponseEntity<Mono<VisualizacaoVideo>> createVisualizacaoVideo1(@RequestBody VisualizacaoVideo visualizacaoVideo) {
+        // Directly return the Mono from the service
+        return ResponseEntity.status(HttpStatus.CREATED)
+                            .body(visualizacaoVideoService.save(visualizacaoVideo));
     }
+
+    
     @PutMapping("/visualizacaovideos/{id}")
     public ResponseEntity<Mono<VisualizacaoVideo>> updateVisualizacaoVideo(
             @PathVariable("id") UUID id, @RequestBody VisualizacaoVideo visualizacaoVideo) {
