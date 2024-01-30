@@ -56,5 +56,9 @@ public class FavoritacaoVideoService {
     public Mono<Void> desmarcarComoFavorito(UUID idUsuario, UUID idVideo) {
         return favoritacaoVideoRepository.deleteByUsuarioIdAndVideoId(idUsuario, idVideo);
     }
+    
+    public Mono<Long> countFavoritos() {
+        return favoritacaoVideoRepository.count();
+    }
 
 }

@@ -20,3 +20,5 @@ public class VisualizacaoVideo {
     private UUID idVideo;
     private LocalDate dataVisualizacao = LocalDate.now();
 }
+
+

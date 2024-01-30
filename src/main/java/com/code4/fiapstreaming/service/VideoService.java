@@ -54,5 +54,9 @@ public class VideoService {
     public Mono<Void> deleteById(UUID id) {
         return videoRepository.deleteById(id);
     }
+    
+    public Mono<Long> countVideos() {
+        return videoRepository.count();
+    }
 
 }

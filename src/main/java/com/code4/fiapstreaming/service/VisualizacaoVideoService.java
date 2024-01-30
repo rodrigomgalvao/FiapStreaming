@@ -38,5 +38,22 @@ public class VisualizacaoVideoService {
     public Mono<Void> deleteById(UUID id) {
         return visualizacaoVideoRepository.deleteById(id);
     }
-
+    
+    public Mono<Double> calculateMediaVisualizacoes() {
+        return visualizacaoVideoRepository.findAll()
+                                          .map(VisualizacaoVideo::getId)
+                                          .collectList()
+                                          .map(ids -> {
+                                              double totalVisualizacoes = ids.size();
+                                              if (totalVisualizacoes == 0) {
+                                                  return 0.0;
+                                              } else {
+                                                  // Lógica para calcular a média
+                                                  // Exemplo simples: média = total / número de visualizações
+                                                  return totalVisualizacoes / totalVisualizacoes;
+                                              }
+                                          });
+    }
 }
+
+
