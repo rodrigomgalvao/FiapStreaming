@@ -44,7 +44,7 @@ O FiapStreaming é uma aplicação de streaming de vídeos desenvolvida com Spri
 - **Manutenibilidade e evolução do sistema**: <p> Facilita a manutenção e evolução do sistema ao longo do tempo, fornecendo uma estrutura clara e organizada que permite compreender e modificar os dados de forma segura e eficaz conforme as necessidades do negócio mudam. </p>
 
 **Guia de uso**
-<p>Para entendimento acerca das requisições previstas pelo sistema, consultar a collection compartilhada via postman, disponívelem: </p>
+<p>Para entendimento acerca das requisições previstas pelo sistema, consultar a collection compartilhada via postman, disponível em: </p>
 
 [com.code4.fiapstreaming ](https://cloudy-meadow-864721.postman.co/workspace/code4~5bc95c3f-1422-4941-8b47-2a50c25bffbe/collection/27460646-f0c01e7e-d8f0-493b-8628-dbbda31cdcfe?action=share&creator=27460646)
 
