@@ -48,8 +48,7 @@ public class VisualizacaoVideoService {
                                               if (totalVisualizacoes == 0) {
                                                   return 0.0;
                                               } else {
-                                                  // Lógica para calcular a média
-                                                  // Exemplo simples: média = total / número de visualizações
+                                                 
                                                   return totalVisualizacoes / totalVisualizacoes;
                                               }
                                           });
