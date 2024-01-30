@@ -35,13 +35,13 @@ O FiapStreaming é uma aplicação de streaming de vídeos desenvolvida com Spri
 
 <p> Como vantagens percebidas ao se realizar o desenho do modelo de dados lógico, é possível destacar:
 
-**Organização e estruturação dos dados**: <p> Permite organizar e estruturar os dados de forma lógica e coerente, definindo entidades, relacionamentos e atributos necessários para representar as informações relevantes do sistema. </p>
+- **Organização e estruturação dos dados**: <p> Permite organizar e estruturar os dados de forma lógica e coerente, definindo entidades, relacionamentos e atributos necessários para representar as informações relevantes do sistema. </p>
 
-**Padronização e consistência**: <p>Proporciona um padrão para a estrutura dos dados, garantindo consistência e integridade ao longo do desenvolvimento do software e evitando inconsistências e redundâncias desnecessárias.</p>
+- **Padronização e consistência**: <p>Proporciona um padrão para a estrutura dos dados, garantindo consistência e integridade ao longo do desenvolvimento do software e evitando inconsistências e redundâncias desnecessárias.</p>
 
-**Base para o desenvolvimento**: <p>Serve como base para o desenvolvimento do banco de dados e das camadas de persistência do software, orientando a criação das tabelas, índices, chaves estrangeiras e demais elementos necessários para armazenar e manipular os dados de forma eficiente.</p>
+- **Base para o desenvolvimento**: <p>Serve como base para o desenvolvimento do banco de dados e das camadas de persistência do software, orientando a criação das tabelas, índices, chaves estrangeiras e demais elementos necessários para armazenar e manipular os dados de forma eficiente.</p>
 
-**Manutenibilidade e evolução do sistema**: <p> Facilita a manutenção e evolução do sistema ao longo do tempo, fornecendo uma estrutura clara e organizada que permite compreender e modificar os dados de forma segura e eficaz conforme as necessidades do negócio mudam. </p>
+- **Manutenibilidade e evolução do sistema**: <p> Facilita a manutenção e evolução do sistema ao longo do tempo, fornecendo uma estrutura clara e organizada que permite compreender e modificar os dados de forma segura e eficaz conforme as necessidades do negócio mudam. </p>
 
 
 **Considerações Finais**:
