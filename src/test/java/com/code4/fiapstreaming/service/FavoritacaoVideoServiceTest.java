@@ -94,7 +94,6 @@ public class FavoritacaoVideoServiceTest {
                 .expectNext(favoritacaoVideo)
                 .verifyComplete();
     }
-
     @Test
     void deleteFavoritacaoVideoById() {
         // Arrange
