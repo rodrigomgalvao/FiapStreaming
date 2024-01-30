@@ -23,4 +23,6 @@ public class FavoritacaoVideo {
     private UUID idVideo;
     private LocalDate dataFavoritacao =  LocalDate.now();
 
+    public FavoritacaoVideo(UUID idUsuario, UUID idVideo) {
+    }
 }

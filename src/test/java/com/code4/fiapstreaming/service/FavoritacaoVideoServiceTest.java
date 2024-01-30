@@ -111,4 +111,27 @@ public class FavoritacaoVideoServiceTest {
         // Verify
         verify(favoritacaoVideoRepository).deleteById(id);
     }
+    @Test
+    void desmarcarComoFavorito() {
+        // Arrange
+        UUID idUsuario = UUID.randomUUID();
+        UUID idVideo = UUID.randomUUID();
+        when(favoritacaoVideoRepository.deleteByUsuarioIdAndVideoId(idUsuario, idVideo)).thenReturn(Mono.empty());
+
+        // Act & Assert
+        StepVerifier.create(favoritacaoVideoService.desmarcarComoFavorito(idUsuario, idVideo))
+                .verifyComplete();
+    }
+
+    @Test
+    void countFavoritos() {
+        // Arrange
+        long count = 5;
+        when(favoritacaoVideoRepository.count()).thenReturn(Mono.just(count));
+
+        // Act & Assert
+        StepVerifier.create(favoritacaoVideoService.countFavoritos())
+                .expectNext(count)
+                .verifyComplete();
+    }
 }

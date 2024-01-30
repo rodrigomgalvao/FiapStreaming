@@ -122,4 +122,19 @@ public class VideoControllerTest {
         HttpStatusCode statusCode = response.getStatusCode();
         assert statusCode.equals(HttpStatus.NO_CONTENT);
     }
+
+    @Test
+    void getVideos_NullCriteria_ReturnsErrorMessage() {
+        // Arrange
+        String expectedMessage = "Por favor, forneça critérios de busca (titulo e/ou dataPublicacao).";
+
+        // Act
+        Flux<Object> response = videoController.getVideos(null, null);
+
+        // Assert
+        StepVerifier.create(response)
+                .expectNext(expectedMessage)
+                .verifyComplete();
+    }
+
 }

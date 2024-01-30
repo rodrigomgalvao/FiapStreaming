@@ -111,4 +111,5 @@ public class VisualizacaoVideoServiceTest {
         // Verify
         verify(visualizacaoVideoRepository).deleteById(id);
     }
+
 }

@@ -19,6 +19,7 @@ public class VisualizacaoVideo {
     private UUID idUsuario;
     private UUID idVideo;
     private LocalDate dataVisualizacao = LocalDate.now();
+
 }
 
 

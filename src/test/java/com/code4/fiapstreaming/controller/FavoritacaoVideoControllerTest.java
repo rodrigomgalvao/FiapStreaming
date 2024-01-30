@@ -15,9 +15,7 @@ import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
 
 import java.time.LocalDate;
-import java.util.Arrays;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -119,5 +117,61 @@ public class FavoritacaoVideoControllerTest {
         verify(favoritacaoVideoService).deleteById(id);
         HttpStatusCode statusCode = response.getStatusCode();
         assert statusCode.equals(HttpStatus.NO_CONTENT);
+    }
+
+    @Test
+    void marcarComoFavorito() {
+        // Arrange
+        UUID idUsuario = UUID.randomUUID();
+        UUID idVideo = UUID.randomUUID();
+        FavoritacaoVideo favoritacaoVideo = new FavoritacaoVideo(idUsuario, idVideo);
+        Map<String, UUID> requestBody = new HashMap<>();
+        requestBody.put("idUsuario", idUsuario);
+        requestBody.put("idVideo", idVideo);
+        when(favoritacaoVideoService.marcarComoFavorito(idUsuario, idVideo)).thenReturn(Mono.just(favoritacaoVideo));
+
+        // Act
+        Mono<FavoritacaoVideo> response = favoritacaoVideoController.marcarComoFavorito(requestBody);
+
+        // Assert
+        StepVerifier.create(response)
+                .expectNext(favoritacaoVideo)
+                .verifyComplete();
+    }
+
+    @Test
+    void desmarcarComoFavorito() {
+        // Arrange
+        UUID idUsuario = UUID.randomUUID();
+        UUID idVideo = UUID.randomUUID();
+        Map<String, UUID> requestBody = new HashMap<>();
+        requestBody.put("idUsuario", idUsuario);
+        requestBody.put("idVideo", idVideo);
+        when(favoritacaoVideoService.desmarcarComoFavorito(idUsuario, idVideo)).thenReturn(Mono.empty());
+
+        // Act
+        Mono<String> response = favoritacaoVideoController.desmarcarComoFavorito(requestBody);
+
+        // Assert
+        StepVerifier.create(response)
+                .expectNext("Operação de desmarcar favorito realizada com sucesso.")
+                .verifyComplete();
+    }
+
+    @Test
+    void getVideoCategoriaById() {
+        // Arrange
+        FavoritacaoVideo favoritacaoVideo1 = new FavoritacaoVideo(UUID.randomUUID(), UUID.randomUUID());
+        FavoritacaoVideo favoritacaoVideo2 = new FavoritacaoVideo(UUID.randomUUID(), UUID.randomUUID());
+        Flux<FavoritacaoVideo> favoritacoes = Flux.just(favoritacaoVideo1, favoritacaoVideo2);
+        when(favoritacaoVideoService.findAll()).thenReturn(favoritacoes);
+
+        // Act
+        Flux<FavoritacaoVideo> response = favoritacaoVideoController.getVideoCategoriaById();
+
+        // Assert
+        StepVerifier.create(response)
+                .expectNext(favoritacaoVideo1, favoritacaoVideo2)
+                .verifyComplete();
     }
 }
