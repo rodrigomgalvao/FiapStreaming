@@ -48,6 +48,11 @@ O FiapStreaming é uma aplicação de streaming de vídeos desenvolvida com Spri
 
 [com.code4.fiapstreaming ](https://cloudy-meadow-864721.postman.co/workspace/code4~5bc95c3f-1422-4941-8b47-2a50c25bffbe/collection/27460646-f0c01e7e-d8f0-493b-8628-dbbda31cdcfe?action=share&creator=27460646)
 
+**Video**:
+<p>
+[Video de apresentação](https://www.youtube.com/watch?v=pKJsJVTTX3o)
+</p>
+
 **Considerações Finais**:
  <p> O FiapStreaming segue as melhores práticas de desenvolvimento de aplicativos web reativos, utilizando tecnologias modernas para garantir qualidade e eficiência. O Spring Boot, em conjunto com o plugin Jacoco Maven, contribui para a criação de uma aplicação robusta e de fácil manutenção. </p>
 
